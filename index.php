@@ -1,10 +1,9 @@
-	<?php
-	//Chamando o header
-		require_once('header.php');
-	?>
+	<?php get_header(); ?>
 	<!-- HOME STARTS -->
 	<!-- Carousel -->
-
+	<?php 
+		if(have_posts()):
+	?>
 	<div class="carousel-container">
 		<div class="row mdb-carousel">
 			<div id="carousel01" class="carousel slide" data-ride="carousel">
@@ -59,52 +58,52 @@
 			</div>
 		</div>
 	</div>
+	<?php 
+		endif;
+	?>
 
 	<!-- Posts -->
 
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-md-7">
+				<?php 
+					if(have_posts()):
+					while(have_posts()) : the_post();
+				?>
 				<div class="row home-post">
-					<div class="post-img">
-						<img src="img/example_1.jpg" class="img-responsive">
+					<div class="post-img">						
+						<?php the_post_thumbnail('large', ['class' => 'img-responsive', 'alt' => get_the_title()]); ?>
 					</div>
 					<div class="post-text">
-						<h1>Lorem ipsum dolor sit amet, </h1>
-						<h2>Sed vehicula mollis fringilla. Donec ac rutrum nisl. Suspendisse pretium euismod imperdiet.</h2>
-						<a href="single.php">
-							<button type="button" class="btn btn-default pull-right body-btn">Continue lendo <span class="glyphicon glyphicon-arrow-right"></span></button>
-						</a>
-					</div>
-				</div>
-				
-				<div class="row home-post">
-					<div class="post-img">
-						<img src="img/example_2.jpg" class="img-responsive">
-					</div>
-					<div class="post-text">
-						<h1>Lorem ipsum dolor sit amet, </h1>
-						<h2>Sed vehicula mollis fringilla. Donec ac rutrum nisl. Suspendisse pretium euismod imperdiet.</h2>
-						<a href="single.php">
-							<button type="button" class="btn btn-default pull-right body-btn">Continue lendo <span class="glyphicon glyphicon-arrow-right"></span></button>
-						</a>
-					</div>
-				</div>
-				
-				<div class="row home-post">
-					<div class="post-img">
-						<img src="img/example_3.jpg" class="img-responsive">
-					</div>
-					<div class="post-text">
-						<h1>Lorem ipsum dolor sit amet, </h1>
-						<h2>Sed vehicula mollis fringilla. Donec ac rutrum nisl. Suspendisse pretium euismod imperdiet.</h2>
+						<h1><?php the_title(); ?></h1>
+						<?php
+							$postid = get_the_ID();
+							     if (get_post_meta($postid, 'subtitulo', true)) {
+								      	echo '<h2>'. get_post_meta($postid, 'subtitulo', true) .'</h2>';
+									  }	 
+							wp_reset_query();
+						?>
 						<a href="single.php">
 							<button type="button" class="btn btn-default pull-right body-btn">Continue lendo <span class="glyphicon glyphicon-arrow-right"></span></button>
 						</a>
 					</div>
 				</div>
 
+			<?php 
+					//Abrimos novamente o código PHP para terminar o while e dizer o que acontecerá se não existirem posts
+					endwhile;
+				else:
+			?>
+					<p class="no-posts">Esse blog ainda não tem nenhuma postagem.</p>
+			<?php
+				endif;
+			?>
+
 				<!-- Paginação -->
+				<?php 
+					if(have_posts()):
+				?>
 				<div class="row">
 					<div class="pagination center-block text-center">
 						<button type="button" class="btn btn-default">1</button>
@@ -115,11 +114,11 @@
 						<button type="button" class="btn btn-default body-btn">Next <span class="fa-angle-double-right"></span></button>
 					</div>
 				</div>
+				<?php 
+					endif;
+				?>
 			</div>
 
 			<!-- HOME END -->
-			<?php
-			//Chamando a sidebar e o footer
-				require_once('sidebar.php');
-				require_once('footer.php');
-			?>
+			<?php get_sidebar(); ?>
+			<?php get_footer(); ?>

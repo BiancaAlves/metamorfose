@@ -26,18 +26,18 @@
 					<p class="post-info"> 
 						<span>
 							<i class="fa fa-calendar-o"></i>
-							Há 16 horas
+							<?php echo 'Há ' . human_time_diff( get_the_time('U'), current_time('timestamp') ); ?>
 						</span>
 						<span>
 							<i class="fa fa-pencil"></i>
-							Escrito por <b>João da Silva</b>
+							Escrito por <b><?php the_autor();s ?></b>
 						</span>
 					</p>
 					<p class="post-tags">
-						<span class="label label-primary">
-						Primeira hashtag</span>
-						<span class="label label-warning">Segunda</span>
-						<span class="label label-success">Mais uma hashtag</span>
+						<?php the_tags('<span class="label label-primary">', '</span><span class="label label-primary">', '</span>');?>
+					</p>
+					<p>
+						<?php the_content(); ?>
 					</p>
 					<p>Nunc sed eros sapien. Praesent neque ex, bibendum in risus non, ornare vestibulum diam. Donec et odio vel ante varius cursus. Mauris elementum mi massa, a tempus mi aliquet id. Aliquam pellentesque vulputate metus, euismod scelerisque purus eleifend nec. Pellentesque sit amet laoreet turpis, auctor accumsan arcu. Suspendisse vel arcu libero. Praesent posuere consectetur augue sit amet consectetur. Praesent nec leo eros. Nam condimentum erat id justo ullamcorper scelerisque. Proin tempor ullamcorper purus. Maecenas rhoncus tellus ut massa lacinia efficitur. Sed faucibus libero at turpis sodales, non fermentum turpis suscipit. Suspendisse interdum et enim eget mollis. Ut facilisis lectus eu turpis facilisis tempor et ac libero.</p>
 					

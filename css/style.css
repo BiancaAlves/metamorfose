@@ -133,6 +133,13 @@ h2 {
 
 /* Posts */
 
+.no-posts {
+	text-align: center;
+	font-size: 1.4em;
+	color: rgba(43,43,43,.6);
+	padding-top: 12px;
+}
+
 .home-post {
 	box-shadow: 0 .25em 10px rgba(0,0,0,.2);
 	margin-bottom: 30px !important;
