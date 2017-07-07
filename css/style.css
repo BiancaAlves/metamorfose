@@ -14,6 +14,62 @@ h2 {
 	font-style: italic;
 }
 
+
+h3 {
+	color: #314150;
+	font-family: 'Raleway', Arial, sans-serif;
+	font-weight: 300;
+	text-transform: uppercase;
+	text-shadow: 3px 3px 1px rgba(43, 43, 43,.2);
+	padding: 0 0 8px 0;
+	margin-top: 0;
+}
+
+/* Buttons */
+
+.btn-primary, 
+.btn-success,
+.btn-warning,
+.btn-danger,
+.btn-default {
+	text-transform: uppercase;
+}
+
+.btn-primary, 
+.btn-success,
+.btn-warning,
+.btn-danger {
+	margin: auto 2px 2px 0;
+	min-width: 140px;
+}
+
+.btn-success,
+.btn-warning,
+.btn-danger {
+	box-shadow: .25em .25em 0 #ededed;
+}
+
+.btn-primary,
+.body-btn {
+	box-shadow: .25em .25em 0 #d8ebff;
+}
+
+.body-btn,
+.btn-pagination {
+	background-color: #fff;
+	font-size: .9em;
+	letter-spacing: .01em;
+}
+
+.body-btn:hover {
+	background-color: #ededed;
+	border: 1px solid #ededed;
+}
+
+.btn-pagination-active {
+	background-color: transparent;
+}
+
 /* Navbar */
 
 /* Ícones de redes sociais */
@@ -70,8 +126,12 @@ h2 {
 	color: #3b5998;
 }
 
-.gplus {
+.google-plus {
 	color: #d84b37;
+}
+
+.twitter {
+	color: #4099ff;
 }
 
 .instagram {
@@ -80,6 +140,20 @@ h2 {
 
 .logo {
 	margin: 20px auto 40px auto;
+}
+
+.logo-box {
+	margin: auto;
+	text-align: center;
+	float: center;
+}
+
+.logo h2 {
+	font-size: 100%;
+	font-style: normal;
+	color: #314150;
+	text-align: center;
+	font-weight: 400;
 }
 
 /* Carousel */
@@ -118,12 +192,21 @@ h2 {
 	background: linear-gradient(to top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
+.carousel-caption h2 {
+	color: #fff;
+}
+
 .label {
 	text-shadow: none;
 	border-radius: none !important;
 	text-transform: uppercase;
 	padding: 4px;
 	font-weight: bold;
+	margin-left: 4px;
+}
+
+.label a {
+	color: #fff;
 }
 
 .carousel-caption h1 {
@@ -163,20 +246,6 @@ h2 {
 	margin-bottom: 2em;
 }
 
-.body-btn {
-	box-shadow: .25em .25em 0 #d8ebff;
-	font-family: 'Raleway', Arial, sans-serif;
-	font-weight: 800;
-	font-size: .9em;
-	letter-spacing: .01em;
-	text-transform: uppercase;
-}
-
-.body-btn:hover {
-	background-color: #ededed;
-	border: 1px solid #ededed;
-}
-
 /* pagination */
 
 .pagination {
@@ -190,16 +259,6 @@ h2 {
 	font-weight: 300;
 	color: #314150;
 	width: 100%;
-}
-
-h3 {
-	color: #314150;
-	font-family: 'Raleway', Arial, sans-serif;
-	font-weight: 300;
-	text-transform: uppercase;
-	text-shadow: 3px 3px 1px rgba(43, 43, 43,.2);
-	padding: 0 0 8px 0;
-	margin-top: 0;
 }
 
 .mini-post {
@@ -216,6 +275,7 @@ h3 {
 
 .mini-post-img img {
 	width: 80px;
+	height: auto;
 }
 
 h4 {
@@ -240,13 +300,6 @@ h4 {
 .media-body {
 	padding-bottom: 2px;
 }
-
-.sidebar-block .body-btn {
-	background-color: #fff;
-	display: block;
-	margin: auto 6px 6px 0;
-}
-
 
 /*  Footer */
 
@@ -277,7 +330,7 @@ footer .social-button:hover {
 /* Media Queries */
 
 @media (min-width: 500px){
-	.mdb-logo {
+	.logo-box {
 		max-width: 70%;
 	}
 }
@@ -287,7 +340,8 @@ footer .social-button:hover {
 	.search-input {
 		max-width: 132px;
 	}
-	.mdb-logo {
+	.mdb-logo,
+	.logo-box {
 		max-width: auto;
 		margin-left: 0 !important;
 		padding-left: 0 !important;
@@ -492,7 +546,7 @@ footer .social-button:hover {
 .single-comments .form-group textarea {
 	margin-bottom: 8px;
 }
-
+/*
 .single-comments .form-group .btn-default {
 	background-color: #fff;
 	display: block;
@@ -501,7 +555,7 @@ footer .social-button:hover {
 	min-width: 140px;
 	background-color: #fff;
 }
-
+*/
 .single-commments .form-group .btn-default:hover {
 	background-color: #fff;
 	border: 1px solid #fff;
@@ -512,4 +566,10 @@ footer .social-button:hover {
 	.sidebar-block {
 		margin-top: .8em;
 	}
+}
+
+/* Alguns estilos para página Sobre/Contato */
+
+.carousel-custom-container {
+	margin-bottom: 20px;
 }

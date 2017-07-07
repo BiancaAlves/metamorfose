@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
-	<title>Metamorfose Digital :: Trabalho na Internet e negócios online</title>
+	<title><?php echo get_bloginfo('name') . " :: " . get_bloginfo('description'); ?></title>
 	<?php wp_head(); ?>
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
@@ -29,18 +29,9 @@
 		      		));
 		      		?>
 
-					<div class="navbar-nav btn-toolbar navbar-right social-group">
-						<a href="#">
-						<button type="button" class="btn btn-default navbar-btn navbar-right social-button gplus"><i class="fa fa-google-plus"></i></button>
-						</a>
-						<a href="#">
-						<button type="button" class="btn btn-default navbar-btn navbar-right social-button instagram"><i class="fa fa-instagram"></i></button>
-						</a>
-						<a href="#">
-						<button type="button" class="btn btn-default navbar-btn navbar-right social-button facebook"><i class="fa fa-facebook"></i>
-						</button>
-						</a>
-					</div>
+		      		<?php 
+		      			get_sidebar('navbar');
+		      		?>
 
 					<form class="navbar-form navbar-right form-inline search" role="search">
 						<div class="form-group">
@@ -60,7 +51,20 @@
 	<div class="container-fluid">
 		<div class="row logo">
 			<div class="col-xs-8 col-xs-offset-2 col-sm-5 col-sm-offset-0 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1">
-				<img src="img/logo.png" class="img-responsive center-block  mdb-logo" alt="Metamorfose Digital">
+				<div class="logo-box">
+					<a href="index.php">
+						<?php 
+							$custom_logo_id = get_theme_mod('custom_logo');
+							$logo = wp_get_attachment_image_src($custom_logo_id , 'full' );
+							if ( has_custom_logo() ) {
+							        echo '<img src="'. esc_url( $logo[0] ) .'" class="img-responsive center-block mdb-logo">';
+							        echo '<h2>' . get_bloginfo('description') .'</h2>';
+							} else {
+							        echo '<h1>'. get_bloginfo( 'name' ) .'</h1>';
+							}
+						?>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>

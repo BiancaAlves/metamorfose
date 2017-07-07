@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 single-post-img">
-				<img src="img/example_8.jpg" class="img-responsive" alt="Título da postagem">
+				<?php the_post_thumbnail('full', ['class' => 'img-responsive', 'alt' => get_the_title()]); ?>
 			</div>
 			<div class="col-xs-12 col-md-7 single-no-padding">
 				<div class="col-xs-1 single-social">
@@ -21,8 +21,8 @@
 					</a>
 				</div>
 				<div class="col-xs-11 single-post">
-					<h1>Maecenas eros purus, blandit vel sollicitudin et, tincidunt ultricies lacus</h1>
-					<h2>Curabitur ullamcorper dolor rutrum libero venenatis, at aliquam dolor pretium</h2>
+					<h1><?php the_title(); ?></h1>
+					<h2><?php echo get_secondary_title(); ?></h2>
 					<p class="post-info"> 
 						<span>
 							<i class="fa fa-calendar-o"></i>
@@ -30,11 +30,33 @@
 						</span>
 						<span>
 							<i class="fa fa-pencil"></i>
-							Escrito por <b><?php the_autor();s ?></b>
+							Escrito por <b><?php the_author(); ?></b>
 						</span>
 					</p>
 					<p class="post-tags">
-						<?php the_tags('<span class="label label-primary">', '</span><span class="label label-primary">', '</span>');?>
+						<?php
+							$categories = get_the_category();
+                			$limit=3; // Set limit here
+                			$counter=0;
+                			foreach ( $categories as $category ) {
+                				if($counter < $limit){
+                					if($category->name != 'Destaque'){
+                		?>
+										<a href="<?php echo esc_url( get_category_link( $category -> term_id ) ); ?>">
+											<?php 
+												$labels = array('label-primary', 'label-warning', 'label-danger', 'label-success');
+												$n = rand(0, 3);
+												echo '<span class="label ' .  $labels[$n] . '">' 
+											?>
+												<?php echo $category->name; ?>
+											</span>
+										</a>                            	
+						<?php 
+									}
+							$counter++; 
+                				}
+               				}
+               			?>
 					</p>
 					<p>
 						<?php the_content(); ?>

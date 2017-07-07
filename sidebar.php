@@ -1,43 +1,10 @@
 			<!-- SIDEBAR START: A sidebar ocupa 4 colunas médias -->
-
 			<div class="col-xs-12 col-md-4 col-md-offset-1">
-				<div class="row sidebar-block">
-					<h3>Mais lidos</h3>
-
-					<ul class="media-list">
-						<li class="media mini-post">
-							<a href="#" class="mini-post-img">
-								<img src="img/example_1.jpg">
-							</a>							
-									<a href="#">
-										<h4 class="media-heading">Ut aliquam, metus et tristique vehicula, erat felis dapibus est</h4>
-										<p>Sed at ex ut risus consequat posuere a eu enim.</p>
-									</a>							
-						</li>
-
-						<li class="media mini-post">
-							<a href="#" class="mini-post-img">
-								<img src="img/example_2.jpg">
-							</a>
-								<a href="#">
-									<h4 class="media-heading">Nulla quis lacus volutpat</h4>
-									<p>Donec blandit interdum bibendum.</p>
-								</a>							
-						</li>
-
-						<li class="media mini-post">
-							<a href="#" class="mini-post-img">
-								<img src="img/example_3.jpg">
-							</a>
-								<a href="#">
-									<h4 class="media-heading">Nulla at nulla massa.</h4>
-									<p>Nulla non tellus ante.
-
-</p>
-								</a>
-						</li>
-					</ul>
-				</div>
+				<?php
+					if(is_active_sidebar ('sidebar')){
+						dynamic_sidebar('sidebar');
+					}
+				?>
 
 				<div class="row sidebar-block">
 					<h3>Sobre a autora</h3>
@@ -48,7 +15,7 @@
 							<div class="media-body">
 								<p>Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto</p>
 
-								<button type="button" class="btn btn-defaut pull-right body-btn">Continue lendo <span class="glyphicon glyphicon-arrow-right"></span></button>
+								<button type="button" class="btn btn-default pull-right body-btn">Continue lendo <span class="glyphicon glyphicon-arrow-right"></span></button>
 							</div>
 						</div>
 				</div>
