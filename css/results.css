@@ -1,0 +1,12 @@
+/* Search/Category/Author page style */
+
+.search-result {
+	font-size: 2em;
+	margin-bottom: 40px;
+}
+
+.search-post-img {
+	width: 40%;
+	float: left;
+	margin-right: 12px;
+}

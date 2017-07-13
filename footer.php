@@ -1,4 +1,6 @@
 	<!-- FOOTER START -->
+		</div> <!-- Fechando o container aberto no index.php (caso a sidebar não tenha sido chamada) -->
+	</div> <!-- Fechando o container aberto no index.php (caso a sidebar não tenha sido chamada) -->
 	<footer class="footer">
 		<div class="well">
 			<div class="container">
@@ -10,22 +12,17 @@
 				</div>
 				<div class="col-xs-12 col-sm-4">
 					<div class="footer-pull-right footer-content">
-						<a href="#">
-						<button type="button" class="btn btn-default navbar-btn navbar-right social-button gplus"><i class="fa fa-google-plus"></i></button>
-						</a>
-						<a href="#">
-						<button type="button" class="btn btn-default navbar-btn navbar-right social-button instagram"><i class="fa fa-instagram"></i></button>
-						</a>
-						<a href="#">
-						<button type="button" class="btn btn-default navbar-btn navbar-right social-button facebook"><i class="fa fa-facebook"></i>
-						</button>
-						</a>
+						<?php
+							if(is_active_sidebar ('footerbar')){
+								dynamic_sidebar('footerbar');
+							}
+						?>
 					</div>
-				</div>
 				</div>
 			</div>
 		</div>
-	</footer>
+	</div>
+</footer>
 
 
 	<?php wp_footer(); ?>

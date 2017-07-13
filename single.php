@@ -5,12 +5,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 single-post-img">
+				<?php if( have_posts() ) the_post(); ?>
 				<?php the_post_thumbnail('full', ['class' => 'img-responsive', 'alt' => get_the_title()]); ?>
 			</div>
-			<div class="col-xs-12 col-md-7 single-no-padding">
+			<div class="col-xs-12 col-md-7 no-padding">
 				<div class="col-xs-1 single-social">
 					<a href="#">
-						<button type="button" class="btn btn-default social-button gplus"><i class="fa fa-google-plus"></i></button>
+						<button type="button" class="btn btn-default social-button google-plus"><i class="fa fa-google-plus"></i></button>
 						</a>
 						<a href="#">
 						<button type="button" class="btn btn-default social-button instagram"><i class="fa fa-instagram"></i></button>
@@ -34,204 +35,34 @@
 						</span>
 					</p>
 					<p class="post-tags">
-						<?php
-							$categories = get_the_category();
-                			$limit=3; // Set limit here
-                			$counter=0;
-                			foreach ( $categories as $category ) {
-                				if($counter < $limit){
-                					if($category->name != 'Destaque'){
-                		?>
-										<a href="<?php echo esc_url( get_category_link( $category -> term_id ) ); ?>">
-											<?php 
-												$labels = array('label-primary', 'label-warning', 'label-danger', 'label-success');
-												$n = rand(0, 3);
-												echo '<span class="label ' .  $labels[$n] . '">' 
-											?>
-												<?php echo $category->name; ?>
-											</span>
-										</a>                            	
-						<?php 
-									}
-							$counter++; 
-                				}
-               				}
-               			?>
+						<?php MDB_Categories(); ?>
 					</p>
-					<p>
+					<div class="content">
 						<?php the_content(); ?>
-					</p>
-					<p>Nunc sed eros sapien. Praesent neque ex, bibendum in risus non, ornare vestibulum diam. Donec et odio vel ante varius cursus. Mauris elementum mi massa, a tempus mi aliquet id. Aliquam pellentesque vulputate metus, euismod scelerisque purus eleifend nec. Pellentesque sit amet laoreet turpis, auctor accumsan arcu. Suspendisse vel arcu libero. Praesent posuere consectetur augue sit amet consectetur. Praesent nec leo eros. Nam condimentum erat id justo ullamcorper scelerisque. Proin tempor ullamcorper purus. Maecenas rhoncus tellus ut massa lacinia efficitur. Sed faucibus libero at turpis sodales, non fermentum turpis suscipit. Suspendisse interdum et enim eget mollis. Ut facilisis lectus eu turpis facilisis tempor et ac libero.</p>
-					
-					<figure>
-						<img src="img/example_6.jpg" alt="Imagem na postagem" class="img-responsive">
-						<figcaption>Quisque nunc tortor, placerat in turpis nec, consectetur venenatis nunc</figcaption>
-					</figure>
-					
-					<p>Nunc fermentum urna eu lorem congue, ac mattis elit luctus. Duis commodo imperdiet eros, facilisis malesuada metus egestas in. Aliquam molestie sodales dolor eget iaculis. Cras hendrerit nec orci eget elementum. Maecenas eros purus, blandit vel sollicitudin et, tincidunt ultricies lacus. Morbi in turpis vel massa aliquam consequat. Quisque interdum rhoncus massa eu consequat. Vestibulum viverra bibendum dapibus.</p>
-
-					<p>Aliquam ut leo aliquam velit sollicitudin fermentum. Proin tempus elementum dui vitae commodo. Fusce efficitur convallis libero, ac efficitur orci. Fusce sit amet molestie augue. Phasellus sit amet sapien ut ex mattis venenatis. Aliquam erat volutpat. Curabitur fringilla aliquam elit, vitae ornare urna aliquam id. Nunc vel nisl ac dui fringilla volutpat eget a ipsum. Curabitur ullamcorper dolor rutrum libero venenatis, at aliquam dolor pretium. </p>
+					</div>
 					
 				</div>
 
 				<!-- Fim da postagem, início dos blocos que vêm após ela -->
 				<div class="col-xs-12 single-block single-about">
-					<h3>Sobre o autor</h3>
+					<?php
+						$author_link = get_the_author_link(); 
+						$hasLink = stripos($link, "href=");
+					?>
+					<h3><small>Sobre o autor</small><br/> <?php echo empty(!$hasLink) ? the_author_link() : the_author_posts_link(); ?></h3>
 					<div class="pull-left profile">
-						<img src="img/slider_4.jpg" >
+						<?php echo get_avatar( get_the_author_meta( 'ID' ) , 80); ?>
 					</div>
 					<p>
-						Nunc fermentum urna eu lorem congue, ac mattis elit luctus. Duis commodo imperdiet eros, facilisis malesuada metus egestas in. Aliquam molestie sodales dolor eget iaculis. Cras hendrerit nec orci eget elementum. 
+						<?php the_author_description(); ?>
 					</p>
-					<div class="single-social">
-						<a href="#">
-							<button type="button" class="btn btn-default social-button gplus"><i class="fa fa-google-plus"></i></button>
-						</a>
-						<a href="#">
-							<button type="button" class="btn btn-default social-button instagram"><i class="fa fa-instagram"></i></button>
-						</a>
-						<a href="#">
-							<button type="button" class="btn btn-default social-button facebook"><i class="fa fa-facebook"></i>
-						</button>
-						</a>
+					<div class="single-social pull-right">
+						<?php my_author_box(); ?>
 					</div>
 				</div>
 
-				<div class="col-xs-12 single-block single-related">
-					<h3>Posts relacionados</h3>
-					<ul class="media-list">
-						<li class="media mini-post">
-							<a href="#" class="mini-post-img">
-								<img src="img/example_1.jpg">
-							</a>							
-									<a href="#">
-										<h4 class="media-heading">Ut aliquam, metus et tristique vehicula, erat felis dapibus est</h4>
-										<p>Sed at ex ut risus consequat posuere a eu enim.</p>
-									</a>							
-						</li>
-
-						<li class="media mini-post">
-							<a href="#" class="mini-post-img">
-								<img src="img/example_2.jpg">
-							</a>
-								<a href="#">
-									<h4 class="media-heading">Nulla quis lacus volutpat</h4>
-									<p>Donec blandit interdum bibendum.</p>
-								</a>							
-						</li>
-
-						<li class="media mini-post">
-							<a href="#" class="mini-post-img">
-								<img src="img/example_3.jpg">
-							</a>
-								<a href="#">
-									<h4 class="media-heading">Nulla at nulla massa.</h4>
-									<p>Nulla non tellus ante.
-
-</p>
-								</a>
-						</li>
-
-						<li class="media mini-post">
-							<a href="#" class="mini-post-img">
-								<img src="img/example_4.jpg">
-							</a>
-								<a href="#">
-									<h4 class="media-heading">Curabitur eget odio dolor</h4>
-									<p>Ut facilisis lectus eu turpis facilisis tempor et ac libero
-
-</p>
-								</a>
-						</li>
-
-					</ul>
-				</div>
-
-				<div class="col-xs-12 single-block single-comments">
-					<h3>Comentários</h3>
-					<ul class="comment">
-						<li>
-							<div class="pull-left profile">
-								<img src="img/slider_4.jpg" >
-							</div>
-							<div class="comment-body">
-								<p>
-									Nunc fermentum urna eu lorem congue, ac mattis elit luctus. Duis commodo imperdiet eros, facilisis malesuada metus egestas in. Aliquam molestie sodales dolor eget iaculis. Cras hendrerit nec orci eget elementum. 
-								</p>
-								<p> 
-									Suspendisse interdum et enim eget mollis. Ut facilisis lectus eu turpis facilisis tempor et ac libero.
-								</p>
-								<div class="comment-options">
-									<span class="fa-lg fa-angle-up comment-up"></span>
-									<span class="fa-lg fa-angle-down comment-down"></span>
-									<span>Responder</span>
-								</div>
-							</div>
-							<ul>
-								<li>
-									<div class="pull-left profile">
-										<img src="img/slider_4.jpg" >
-									</div>
-									<div class="comment-body">
-										<p>
-											Nunc fermentum urna eu lorem congue, ac mattis elit luctus. Duis commodo imperdiet eros, facilisis malesuada metus egestas in. Aliquam molestie sodales dolor eget iaculis. Cras hendrerit nec orci eget elementum. 
-										</p>
-										<p> 
-											Suspendisse interdum et enim eget mollis. Ut facilisis lectus eu turpis facilisis tempor et ac libero.
-										</p>
-										<div class="comment-options">
-											<span class="fa-lg fa-angle-up comment-up"></span>
-											<span class="fa-lg fa-angle-down comment-down"></span>
-											<span>Responder</span>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="pull-left profile">
-										<img src="img/slider_4.jpg" >
-									</div>
-									<div class="comment-body">
-										<p>
-											Nunc fermentum urna eu lorem congue, ac mattis elit luctus. Duis commodo imperdiet eros, facilisis malesuada metus egestas in. Aliquam molestie sodales dolor eget iaculis. Cras hendrerit nec orci eget elementum. 
-										</p>
-										<p> 
-											Suspendisse interdum et enim eget mollis. Ut facilisis lectus eu turpis facilisis tempor et ac libero.
-										</p>
-										<div class="comment-options">
-											<span class="fa-lg fa-angle-up comment-up"></span>
-											<span class="fa-lg fa-angle-down comment-down"></span>
-											<span>Responder</span>
-										</div>
-									</div>
-									<ul>
-										<li>
-											<div class="pull-left profile">
-												<img src="img/slider_4.jpg" >
-											</div>
-											<div class="comment-body">
-												<p>
-													Nunc fermentum urna eu lorem congue, ac mattis elit luctus. Duis commodo imperdiet eros, facilisis malesuada metus egestas in. Aliquam molestie sodales dolor eget iaculis. Cras hendrerit nec orci eget elementum. 
-												</p>
-												<p> 
-													Suspendisse interdum et enim eget mollis. Ut facilisis lectus eu turpis facilisis tempor et ac libero.
-												</p>
-												<div class="comment-options">
-													<span class="fa-lg fa-angle-up comment-up"></span>
-													<span class="fa-lg fa-angle-down comment-down"></span>
-													<span>Responder</span>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<form class="form-group">
-						<textarea class="form-control" name="comment" type="text" placeholder="Comente aqui..." rows="3"></textarea>
-						<button class="btn btn-default pull-right">Enviar</button>
-					</form>
-				</div>
+					<?php MDB_Related_Posts(); ?>
+					<?php comments_template( '', true ); ?>
 
 			</div>
 

@@ -35,22 +35,18 @@
 					endif;
 				?>
 				<div class="pull-left profile">
-					<img src="img/example_2.jpg" alt="Sobre o blog">
+					<?php echo get_avatar( get_the_author_meta( 'ID' ) , 100); ?>
 				</div>
-				<p>
+				<div class="content">
 					<?php the_content(); ?>
-				</p>
+				</div>
 				<div class="single-social">
-					<a href="#">
-						<button type="button" class="btn btn-default social-button gplus"><i class="fa fa-google-plus"></i></button>
-					</a>
-					<a href="#">
-						<button type="button" class="btn btn-default social-button instagram"><i class="fa fa-instagram"></i></button>
-					</a>
-					<a href="#">
-						<button type="button" class="btn btn-default social-button facebook"><i class="fa fa-facebook"></i>
-					</button>
-					</a>
+				<?php 
+					$facebook = get_post_meta($post->ID, $field['facebook'], true); 
+					$googlePlus = get_post_meta($post->ID, $field['googlePlus'], true); 
+					$instagram = get_post_meta($post->ID, $field['instagram'], true); 
+					$twitter = get_post_meta($post->ID, $field['twitter'], true); 
+					about_social($facebook[facebook][0], $googlePlus[googlePlus][0], $instagram[instagram][0], $twitter[twitter][0]); ?>
 				</div>
 
 				<?php 

@@ -28,31 +28,22 @@
 		      			'walker' => new Main_Walker_Nav_Menu()
 		      		));
 		      		?>
-
-		      		<?php 
-		      			get_sidebar('navbar');
-		      		?>
-
-					<form class="navbar-form navbar-right form-inline search" role="search">
-						<div class="form-group">
-							<input type="text" placeholder="Pesquisar" class="form-control search-input">
-						</button>
-						</div>
-						<button type="submit" value="Enviar" class="btn btn-default search-button">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</form>
+		      		<div class="navbar-right social-group">
+			      		<?php 
+			      			get_sidebar('navbar');
+			      		?>
+		      		</div>
 				</div>
 			</div>
 		</div>
 	</nav>
 
 	<!-- Logo -->
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row logo">
-			<div class="col-xs-8 col-xs-offset-2 col-sm-5 col-sm-offset-0 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1">
+			<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-0">
 				<div class="logo-box">
-					<a href="index.php">
+					<a href="<?php echo home_url('/'); ?>">
 						<?php 
 							$custom_logo_id = get_theme_mod('custom_logo');
 							$logo = wp_get_attachment_image_src($custom_logo_id , 'full' );
@@ -65,6 +56,9 @@
 						?>
 					</a>
 				</div>
+			</div>
+			<div class="col-xs-12 col-md-7 col-md-offset-1">
+				<div class="ad"></div>
 			</div>
 		</div>
 	</div>
